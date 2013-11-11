@@ -26,6 +26,7 @@
 	else
 		$content = 'invalid input';
 
+	header( "refresh:1;url=../../" );
 	echo $content;
 
 	exit(); 

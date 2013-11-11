@@ -13,6 +13,7 @@ RewriteRule ^login/?$ /resources/pages/login.php
 RewriteRule ^register/submit/?$ /resources/scripts/php/accounts/add_user.php
 RewriteRule ^login/submit/?$ /resources/scripts/php/accounts/login_user.php
 RewriteRule ^logout/?$ /resources/scripts/php/accounts/logout.php
+RewriteRule ^admin/?$ /resources/pages/admin.php
  
 #handle root errors
 ErrorDocument 403 /errors/construction.php

@@ -38,12 +38,20 @@ class Html {
 			case 'login_page':
 				include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/login_markup.php';
 				break;
+
+			case 'admin_page':
+				include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/admin_markup.php';
 		}
 		//exit();
 	}
 
 	function outputContent($content) {
 		echo $this->content;
+	}
+
+	function levelCheck($level) {
+		//session_start();
+		return intval($level);
 	}
 
 	function generate($type, $data = NULL, $content = NULL) { //generate dynamic data to be inserted into markup
@@ -76,11 +84,17 @@ class Html {
 					break;
 
 					case 'account_panel': //i made a change
-						session_start();
+						if (!isset($_SESSION))
+							session_start();
 
 						if (isset ($_SESSION['userString'])) {
 							$this->content = '<p id="register-login">'.$_SESSION['userString'];
 							$this->content = $this->content.'<form id="register-login" action="/logout/"><input type="submit" value="Logout"></form>';
+
+							switch ($_SESSION['userLevel']) {
+								case '2': 
+									$this->content = $this->content.'<form id="register-login" action="/admin/"><input type="submit" value="Admin"></form>';
+						}
 						}
 
 						else
