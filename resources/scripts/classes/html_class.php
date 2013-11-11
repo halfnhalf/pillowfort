@@ -55,7 +55,8 @@ class Html {
 				$this->handle = fopen($posts, 'r'); //access the database
 				
 				switch ($type) {
-					case 'posts' || 'posts_page':
+					case 'posts':
+					case 'posts_page':
 						while($line = fgets($this->handle)) {
 							$postId = explode('::', $line);
 	
