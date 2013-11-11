@@ -1,0 +1,19 @@
+#!/usr/sbin/perl
+use strict;
+use CGI;
+
+my $query = new CGI;
+
+print $query->header("text/html");
+
+print <<END_HERE;
+<html>
+	<head>
+		<title>My first cgi script</title>
+	</head>
+	<body>
+	<h1>This is a pretty lame web page</h1>
+	</body>
+</html>
+END_HERE
+#end

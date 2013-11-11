@@ -1,0 +1,19 @@
+order allow,deny
+allow from all
+
+#php cgi script
+DirectoryIndex index.php
+
+RewriteEngine on
+
+RewriteRule ^post/([A-Za-z0-9]+)/?$ /resources/pages/view_post.php?id=$1 [NC,L]
+RewriteRule ^submit/?$ /resources/scripts/php/post/submit_post.php
+RewriteRule ^register/?$ /resources/pages/register.php
+RewriteRule ^login/?$ /resources/pages/login.php
+RewriteRule ^register/submit/?$ /resources/scripts/php/accounts/add_user.php
+RewriteRule ^login/submit/?$ /resources/scripts/php/accounts/login_user.php
+RewriteRule ^logout/?$ /resources/scripts/php/accounts/logout.php
+ 
+#handle root errors
+ErrorDocument 403 /errors/construction.php
+ErrorDocument 404 /errors/construction.php

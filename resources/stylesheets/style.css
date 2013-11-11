@@ -1,0 +1,86 @@
+#span-title {
+	font-size: 48pt;
+	font-family: 'Patrick Hand SC';
+	color: #E74C3C;
+	background-color: #FFFFFF;
+	vertical-align: top;
+	font-weight: bold;
+	text-align: center;
+}
+
+a {
+	text-decoration: inherit;
+	color: inherit;
+}
+
+body {
+	font-size: 12pt;
+}
+
+hr.linebreak {
+	height: 3px;
+	width: 90%;
+	color: #3498DB;
+	background-color: #3498DB;
+	border: 0;
+}
+
+form#submit {
+	font-family: 'Open Sans';
+	color: #417bbe;
+	text-align: left;
+	margin-left: 10%;
+	margin-top: 50px;
+}
+
+#register-login {
+	font-family: inherit;
+	color: inherit;
+	text-align: right;
+}
+
+.textCenter {
+	text-align: center;
+}
+
+.welcomemessage {
+	font-size: inherit;
+	font-family: 'Open Sans';
+	color: #3498DB;
+}
+
+.small {
+	font-size: 10pt;
+}
+
+table#posts-table
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 16px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+table#posts-table th
+{
+	padding: 8px;
+	font-weight: normal;
+	font-size: 13px;
+	color: #039;
+	background: #b9c9fe;
+}
+
+table#posts-table td
+{
+	padding: 8px;
+	background: #e8edff;
+	border-top: 1px solid #fff;
+	color: #669;
+}
+
+table#posts-table tbody tr:hover td
+{
+	background: #d0dafd;
+}
