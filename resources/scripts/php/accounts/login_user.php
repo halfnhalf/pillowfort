@@ -21,7 +21,8 @@
 		}
 	}
 
-	if(!isset($_SESSION['userString']))
+	if(!isset($_SESSION['userString'])) {
 		echo "failed to log in";
-	 
+		header( "refresh:1;url=../../" );
+	}
 ?>

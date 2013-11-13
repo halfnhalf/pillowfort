@@ -14,6 +14,8 @@ RewriteRule ^register/submit/?$ /resources/scripts/php/accounts/add_user.php
 RewriteRule ^login/submit/?$ /resources/scripts/php/accounts/login_user.php
 RewriteRule ^logout/?$ /resources/scripts/php/accounts/logout.php
 RewriteRule ^admin/?$ /resources/pages/admin.php
+RewriteRule ^admin/remove/?$ /resources/scripts/php/admin/remove.php
+RewriteRule ^404 /errors/construction.php
  
 #handle root errors
 ErrorDocument 403 /errors/construction.php

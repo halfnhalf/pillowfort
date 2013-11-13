@@ -6,5 +6,5 @@
 	fwrite($handle, "\r\n".htmlspecialchars($_POST["username"])."::".$_POST["password"]."::".$_POST["email"]."::1");
 
 	echo "success";
-	header('Location:'.$_SERVER['HTTP_REFERER']);
+	header( "refresh:1;url=../../" );
 ?>
