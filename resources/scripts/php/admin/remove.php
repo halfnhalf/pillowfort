@@ -1,7 +1,7 @@
 <?php
 	ini_set('display_errors', 'On');
 
-	if(isset($_POST['type']) && (isset($_POST['username']) || isset($_POST['id'])) {
+	if(isset($_POST['type']) && (isset($_POST['username']) || isset($_POST['id']))) {
 		if(isset($_POST['username']))
 			$username = $_POST['username'];
 

@@ -95,23 +95,34 @@ class Html {
 						if (!isset($_SESSION))
 							session_start();
 
+						$this->handle = fopen($_SERVER['DOCUMENT_ROOT'].'/resources/markup/account_panel/assets.html', 'r');
+						while($assets[] = fgets($this->handle)) {}
+						fclose($this->handle);
+
+						/****************************************/
+						/* assets[0] = logoutButton
+						/* assets[1] = register and login buttons
+						/* assets[2] = admin button
+						/* assets[3] = account button
+						/****************************************/
+
 						if (isset ($_SESSION['userString'])) {
-							$this->content = '<p id="register-login">'.$_SESSION['userString'];
-							$this->content = $this->content.'<form id="register-login" action="/logout/"><input type="submit" value="Logout"></form>';
+							$this->content = '<p id="accountPanel">'.$_SESSION['userString'].'</p>';
+							$this->content = $this->content.$assets[0];
 
 							switch ($_SESSION['userLevel']) {
 								case '2': 
-									$this->content = $this->content.'<form id="register-login" action="/admin/"><input type="submit" value="Admin"></form>';
+									$this->content = $this->content.$assets[2];
 									break;
 
 								case '1':
-									$this->content = $this->content.'<form id="register-login" action="/account/"><input type="submit" value="My Account"></form>';
+									$this->content = $this->content.$assets[3];
 									break;
 							}
 						}
 
-						else
-							$this->content = '<form id="register-login" action="/register/"><input type="submit" value="Register"></form><form id="register-login" action="/login/"><input type="submit" value="Login"></form>';
+						else //no one is logged in
+							$this->content = $assets[1];
 
 					break;
 
@@ -125,13 +136,13 @@ class Html {
 							foreach ($credentials as $element)
 								$element = str_replace("\r\n", "", $element);
 
-							$this->content = $this->content.'<tr><td>'.$credentials[0].'<form id="submit" action="/admin/remove/" method="post"><input type="hidden" name="username" value='.$credentials[0].'><input type="hidden" name="type" value="accounts"><input type="submit" name="submit" value="Remove"></form>'.'</td></tr>';
+							$this->content = $this->content.'<tr><td>'.$credentials[0].'<form action="/admin/remove/" method="post"><input type="hidden" name="username" value='.$credentials[0].'><input type="hidden" name="type" value="accounts"><input type="submit" name="submit" value="Remove"></form>'.'</td></tr>';
 					}
 
 					break;
 				}
 
-					$this->content = $this->content.'</body>';
+					//$this->content = $this->content.'</body>';
 					return $this->content;	
 	}
 }

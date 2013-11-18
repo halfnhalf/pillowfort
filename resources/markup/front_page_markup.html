@@ -1,19 +1,33 @@
 <title>PillowFort</title>
-<body>
-	<form id="submit" action="/submit/" method="post">
-	   Title: <input type="text" name ="title">
-        <br>
-        Link: <input type="text" name="link"><input type="submit" name="submit" value="Submit">
-        <br>
-        Text: <textarea name="textarea" cols=50 rows=10></textarea><input type="submit" name="submit" value="Submit">
-	</form>
 
- 	<table>
-    	<thead>
-        	<tr>
-        	   	<th scope="col">Posts</th>
-        	</tr>
-     	</thead>
-     	<?php /*new posts are generated here */ $H = new Html(); $H->outputContent($H->generate('posts'));?> 
-	</table>
-</body>
+<div class="" id="submitPostForm">
+   <form action="/submit/" method="post">
+        <div class="form-group">
+            <label for="postTitle">Title</label>
+            <input class="form-control" id="postTitle" type="text" name ="title" placeholder="Title">
+        </div>
+        <div class="form-group">
+            <label for"postText">Link or Text</label> 
+            <input class="form-control" id="postLink" type="text" name="link" placeholder="Link">
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" name="textarea" rows="3" placeholder="Text"></textarea>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+   </form>
+</div>
+
+<div class="" id="postsTable">
+ <table class="table">
+	<thead>
+    	<tr>
+    	   	<th scope="col">Posts</th>
+    	</tr>
+ 	</thead>
+ 	<?php /*new posts are generated here */ $H = new Html(); $H->outputContent($H->generate('posts'));?> 
+</table>
+</div>
