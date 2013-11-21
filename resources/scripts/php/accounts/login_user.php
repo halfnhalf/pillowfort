@@ -4,6 +4,7 @@
 
 	$username = $_POST["username"];
 	$password = $_POST["password"];
+    $expireTime = 3600;
 
 	while($line = fgets($handle)) {
 		$credentials = explode('::', $line); //[0] = username, [2] = email, [1] = password [3] = level
@@ -15,7 +16,7 @@
 			session_start();
 			$_SESSION['userString'] = $userString;
 			$_SESSION['userLevel'] = $userLevel;
-			//setcookie( 'userString', ''.$userString, time()+60*30, '/');
+            $_SESSION['expire'] = time() + 3600;
 			echo "Successfully logged in!";
 			header( "refresh:1;url=../../" );
 		}

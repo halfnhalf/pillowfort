@@ -10,9 +10,15 @@
  			$H->template($attributes = array('admin_page'));
 
  		else 
- 			echo "You must be an admin to access this page.";
+ 			$H->generateError("You must be an admin to access this page.");
  	}
- 	else
- 		echo "Please Log In"
-
+ 	else {
+ 		echo '<div class="container">'.'';
+            $H->generateError("You must be logged in to access this page.");
+        echo '</div>'.'';
+    }
+$H->template($attributes = array('footer'));
 ?>
+
+
+

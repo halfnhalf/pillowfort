@@ -6,7 +6,7 @@ DirectoryIndex index.php
 
 RewriteEngine on
 
-RewriteRule ^post/([A-Za-z0-9]+)/?$ /resources/pages/view_post.php?id=$1 [NC,L]
+RewriteRule ^post/([A-Za-z0-9]+)/?$ /resources/pages/post.php?id=$1 [NC,L]
 RewriteRule ^submit/?$ /resources/scripts/php/post/submit_post.php
 RewriteRule ^register/?$ /resources/pages/register.php
 RewriteRule ^login/?$ /resources/pages/login.php

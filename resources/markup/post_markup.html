@@ -1,5 +1,15 @@
 
-<!-- assume header and logo is already included by the main class-->
-<body>
-<?php $H = new Html(); $H->outputContent($H->generate('posts_page', $_GET['id']/*get the dictionary key of the post*/)); //Dynamic data is inserted here?>
-</body>
+<div class="container">
+    <div class="panel panel-default" style="max-width: 50%;">
+        <?php $H=new Html();$H->outputContent($H->generate('posts_page',$_GET['id']));?>
+    </div>
+
+    <div class="well">
+        <h4>zach</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+    </div>
+    <div class="well">
+        <h4>andrew</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+    </div>
+</div>

@@ -23,12 +23,13 @@
 				break;
 		}
 		fclose($handle);
+		header( "refresh:1;url=../../" );
 	}
 
 	else
 		$content = 'invalid input';
 
-	//header( "refresh:1;url=../../" );
+	header( "refresh:1;url=../../" );
 	echo $content;
 
 	exit(); 

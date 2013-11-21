@@ -1,6 +1,7 @@
-a {
+a,
+a:hover {
 	text-decoration: none;
-	color: inherit;
+	color:inherit;
 }
 
 .center {
@@ -9,14 +10,32 @@ a {
 
 #submitPostForm {
 	float: right;
-	margin-right: 30px;
+	width: 250px;
 }
 
-form#accountPanel {
+#accountPanel {
 	float: right;
+	font-size: .5em;
+	margin-top: 1%;
 }
 
 #postsTable {
 	float: left;
 	margin-left: 30px;
+	width: 30%;
+}
+
+#warningMessage {
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+#postPage {
+
+}
+
+.divider{
+    width:100px;
+    height:auto;
+    display:inline-block;
 }

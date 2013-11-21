@@ -1,33 +1,11 @@
 <title>PillowFort</title>
 
-<div class="" id="submitPostForm">
-   <form action="/submit/" method="post">
-        <div class="form-group">
-            <label for="postTitle">Title</label>
-            <input class="form-control" id="postTitle" type="text" name ="title" placeholder="Title">
-        </div>
-        <div class="form-group">
-            <label for"postText">Link or Text</label> 
-            <input class="form-control" id="postLink" type="text" name="link" placeholder="Link">
-        </div>
-        <div class="form-group">
-            <textarea class="form-control" name="textarea" rows="3" placeholder="Text"></textarea>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Submit</button>
-            </div>
-        </div>
-   </form>
-</div>
-
-<div class="" id="postsTable">
- <table class="table">
-	<thead>
-    	<tr>
-    	   	<th scope="col">Posts</th>
-    	</tr>
- 	</thead>
+<div class="container">
+	<div class="list-group col-sm-4">
  	<?php /*new posts are generated here */ $H = new Html(); $H->outputContent($H->generate('posts'));?> 
-</table>
+ 	</div>
+
+ 	<div class="col-sm-4" id="submitPostForm">
+		<?php $H = new Html(); if($H->isLoggedIn()) include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/account_panel/submit_post_form.html'; //show the form when logged is?>
+	</div>
 </div>

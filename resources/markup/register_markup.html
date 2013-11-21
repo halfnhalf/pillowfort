@@ -1,9 +1,11 @@
-<form id="submit" action="/register/submit/" method="post">
-	Username: <input type="text" name ="username">
-  	<br>
-  	Email: <input type="email" name="email">
-  	<br>
-  	Password: <input type="password" size="25" name="password">
-  	<br>
-  	<input type="submit" name="submit" value="Register">
-</form>
+<body>
+<div class="container">
+    <form class="form-signin" action="/register/submit/" method="post">
+        <h2 class="form-signin-heading"></h2>
+        <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+        <input type="text" name="email" class="form-control" placeholder="Email" required>
+        <input type="password" name="password"class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-default btn-block" type="submit">Submit</button>
+    </form>
+</div>
+</body>

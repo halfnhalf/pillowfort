@@ -1,12 +1,16 @@
 <?php
 function generatePostContent($postId, $data) {
 	if (strcmp($data, $postId[1]) == 0) {
-		$content='<title>'.$postId[0].'</title><p>POST: '.$postId[0].'</p>';
-		
+		//$content='<title>'.$postId[0].'</title><h2 class="page-header">'.$postId[0].'</h2>';
+            $content='<div class="panel-heading">
+                        <h3 class="panel-title">'.$postId[0].'</h3></div>';
+
 		$postId[3] = str_replace("\r\n", "", $postId[3]); //shouldn't need to be here because of previous foreach but for somereason that doesn't work
+        $content=$content.'<div class="panel-body">
+        ';
 		switch ($postId[3]) {
 			case 'text_area':
-				$content = $content.'<p>'.htmlspecialchars($postId[2]).'</p>';//escape html special characters to prevent xss
+				$content = $content.htmlspecialchars($postId[2]);//escape html special characters to prevent xss
 				break;
 			
 			case 'image_link':
@@ -16,10 +20,11 @@ function generatePostContent($postId, $data) {
 					$content = $content.'<img src='.$postId[2].' width="70%" height="70%" />';
 	
 				else
-					$content = $content.'<img src="'.$postId[2].'" />';
+					$content = $content.'<img src="'.$postId[2].'"/>';
 	
 				break;
 		}
+        $content=$content.'</div>';
 	return $content;
 	}
 }

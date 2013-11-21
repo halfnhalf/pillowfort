@@ -15,7 +15,7 @@
 		header('Location:/404');
 		exit();
 	}
-
+    echo $type;
 	$accounts = $_SERVER['DOCUMENT_ROOT'].'/database/accounts.txt';
 	$posts = $_SERVER['DOCUMENT_ROOT'].'/database/posts.txt';
 	$temp = $_SERVER['DOCUMENT_ROOT'].'/database/temp_posts.txt';
