@@ -24,23 +24,30 @@
 
 	switch ($type) {
 		case 'posts':
-			$handle = fopen($posts, 'a');
+			$handle = fopen($posts, 'r');
 			break;
 
 		case 'accounts':
-			$handle = fopen($accounts, 'a');
+			$handle = fopen($accounts, 'r');
 			break;
 	}
 
 
 	while($line = fgets($handle)) {
 		$postId = explode('::', $line);//[0] = title, [1] = id, [2] = link, [3] = type, [4] = hidden
+        foreach ($postId as $element)
+            $element = str_replace("\r\n", "", $element);
 
-		echo ''.$id.' '.$postId[1];
-		if ($id !== $postId[1]) {
-			fwrite($temp_handle, $line);
-			echo "write";
-		}
+        switch ($type) {
+            case 'posts':
+		        if (strcmp($id , $postId[1]) != 0)
+			        fwrite($temp_handle, $line);
+            break;
+            case 'accounts':
+                if (strcmp($id, $postId[0]) != 0)
+                    fwrite($temp_handle, $line);
+            break;
+        }
 
 	}
 
@@ -56,7 +63,7 @@
 			break;
 	}
 	echo "success";
-	file_put_contents($temp.'', '');
+	file_put_contents($temp, '');
 	chmod($temp, 0777);
-	//header( "refresh:1;url=../" );
+	header( "refresh:0;url=../" );
 ?>

@@ -16,6 +16,7 @@ RewriteRule ^logout/?$ /resources/scripts/php/accounts/logout.php
 RewriteRule ^admin/?$ /resources/pages/admin.php
 RewriteRule ^admin/remove/?$ /resources/scripts/php/admin/remove.php
 RewriteRule ^404 /errors/construction.php
+RewriteRule ^post/([A-Za-z0-9]+)/comment/submit?$ /resources/scripts/php/post/submit_comment.php
  
 #handle root errors
 ErrorDocument 403 /errors/construction.php

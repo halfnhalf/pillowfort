@@ -1,9 +1,7 @@
 <?php
-function generatePostContent($postId, $data) {
-	if (strcmp($data, $postId[1]) == 0) {
-		//$content='<title>'.$postId[0].'</title><h2 class="page-header">'.$postId[0].'</h2>';
+function generatePostContent($postId) {
             $content='<div class="panel-heading">
-                        <h3 class="panel-title">'.$postId[0].'</h3></div>';
+                        <h3 class="panel-title">'.$postId[0].' by '.$postId[4].'</h3></div>';
 
 		$postId[3] = str_replace("\r\n", "", $postId[3]); //shouldn't need to be here because of previous foreach but for somereason that doesn't work
         $content=$content.'<div class="panel-body">
@@ -25,7 +23,7 @@ function generatePostContent($postId, $data) {
 				break;
 		}
         $content=$content.'</div>';
+
 	return $content;
-	}
 }
 ?>

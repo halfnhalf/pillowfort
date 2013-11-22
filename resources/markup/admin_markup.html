@@ -1,5 +1,12 @@
 <div class="container">
-    <div class="list-group col-sm-4">
+    <h3 class="page-header center">Admin Control Panel</h3>
+    <div class="col-sm-4">
+        <h4>Posts</h4>
         <?php /*new posts are generated here */ $H = new Html(); $H->outputContent($H->generate('posts_admin'));?>
+    </div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <h4>Accounts</h4>
+        <?php $H->outputContent($H->generate('accounts_admin'));?>
     </div>
 </div>

@@ -7,9 +7,8 @@ $H = new Html();
 //output standard template
 $H->template($attributes = array('head','logo'));
 ?>
+
 <div class="container">
 <?php $H->generateError("DO NOT ENTER PRIVATE INFORMATION. NOTHING IS ENCRYPTED.");?>
 </div>
-<?php
-$H->template($attributes = array('register_page','footer'));
-?>
+<?php $H->template($attributes = array('register_page','footer'));?>

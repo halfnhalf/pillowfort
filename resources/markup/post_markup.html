@@ -1,15 +1,11 @@
-
 <div class="container">
     <div class="panel panel-default" style="max-width: 50%;">
         <?php $H=new Html();$H->outputContent($H->generate('posts_page',$_GET['id']));?>
     </div>
-
-    <div class="well">
-        <h4>zach</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-    </div>
-    <div class="well">
-        <h4>andrew</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+    <?php $H=new Html();$H->outputContent($H->generate('comments',$_GET['id']));?>
+    <div class="col-sm-4" id="submitCommentForm">
+        <?php $H = new Html();
+        if($H->postExists())
+            include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/account_panel/submit_comment_form.html';?>
     </div>
 </div>

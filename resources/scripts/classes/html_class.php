@@ -3,10 +3,10 @@
 /*Created by Zachary Clute
 functions as the backend for pillowfort*/
 include $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/php/post/posts_page.php';
-
+include $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/php/post/comments_page.php';
+$postFound = false;
 class Html {
 
-	
 	function template($attributes) {
 			foreach ($attributes as $type)
 				$this->default_output($type);
@@ -18,6 +18,7 @@ class Html {
 		switch ($type) {
 			case 'head':
 				include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/head_markup.html';
+                include $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/php/analyticstracking.php';
 				break;
 		
 			case 'front_page':
@@ -66,8 +67,13 @@ class Html {
 	}
 
     function generateError($message) {
-        $this->content = '<div class="alert alert-danger" id="warningMessage">'.$message.'</div>';
+        $this->content = '<div class="container"><div class="alert alert-danger" id="warningMessage">'.$message.'</div></div>';
         $this->outputContent($this->content);
+    }
+
+    function postExists() {
+        global $postFound;
+        return $postFound;
     }
 
 	function generate($type, $data = NULL, $content = NULL) { //generate dynamic data to be inserted into markup
@@ -83,14 +89,14 @@ class Html {
 			case 'posts_admin':
 				$this->handle = fopen($posts, 'r');
 				while($line = fgets($this->handle)) {
-					$postId = explode('::', $line); //[0] = title, [1] = id, [2] = link, [3] = type, [4] = hidden
+					$postId = explode('::', $line); //[0] = title, [1] = id, [2] = link, [3] = type, [4] = author
 					foreach ($postId as $element)
 						$element = str_replace("\r\n", "", $element);
+                    $postId[1] = str_replace("\r\n","",$postId[1]);
 
 					switch ($type) {
 						case 'posts':
-							if(!isset($postId[4]))
-								$this->content = $this->content.'<a href="/post/'.$postId[1].'/" class="list-group-item"><h4 class="list-group-item-heading">'.$postId[0].'</h4><p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></a>';
+							$this->content = $this->content.'<a href="/post/'.$postId[1].'/" class="list-group-item"><h4 class="list-group-item-heading">'.$postId[0].'</h4><p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></a>';
 							break;
 
 						case 'posts_admin':
@@ -98,9 +104,16 @@ class Html {
 							break;
 
 						case 'posts_page':
-							$this->content=$this->content.generatePostContent($postId, $data);
+                            if (strcmp($data, $postId[1]) == 0) {
+							    $this->content = generatePostContent($postId);
+                                global $postFound;
+                                $postFound = TRUE;
+                                break 2;
+                            }
+                            $this->content = '<h2 class="center">Post not found.</h2>';
 							break;
 					}
+
 				}
 
 			fclose($this->handle);
@@ -111,12 +124,12 @@ class Html {
 
 				if (isset ($_SESSION['userString'])) {
 					$this->content = '<body>'.$_SESSION['userString'].'</body>';
-					switch ($_SESSION['userLevel']) {
-						case '2': //user is an admin
+					switch ($this->levelCheck($_SESSION['userLevel'])) {
+						case 2: //user is an admin
 							$this->content = $this->content.file_get_contents($adminLogoutButtons);
 							break;
 
-						case '1':
+						case 1:
 							$this->content = $this->content.file_get_contents($accountLogoutButtons);
 							break;
 					}
@@ -124,7 +137,7 @@ class Html {
 				else //no one is logged in
 					$this->content = $this->content.file_get_contents($registerLoginButtons);
 			break;
-			case 'accounts': //list the accounts with admin options to remove
+			case 'accounts_admin': //list the accounts with admin options to remove
 				$accounts = $_SERVER['DOCUMENT_ROOT'].'/database/accounts.txt';
 				$this->handle = fopen($accounts, 'r');
 
@@ -133,9 +146,22 @@ class Html {
 
 					foreach ($credentials as $element)
 						$element = str_replace("\r\n", "", $element);
-					$this->content = $this->content.'<tr><td>'.$credentials[0].'<form action="/admin/remove/" method="post"><input type="hidden" name="username" value='.$credentials[0].'><input type="hidden" name="type" value="accounts"><input type="submit" name="submit" value="Remove"></form>'.'</td></tr>';
+
+					$this->content = $this->content.'<a href="" class="list-group-item"><h4 class="list-group-item-heading">'.$credentials[0].'</h4><p class="list-group-item-text"><form id="submit" action="/admin/remove/" method="post"><input type="hidden" name="id" value="'.$credentials[0].'"><input type="hidden" name="type" value="accounts"><button type="submit" class="btn btn-default btn-xs">Remove</button></form></p></a>';
 				}
 			break;
+
+            case 'comments':
+                $this->handle = fopen($posts, 'r');
+                while($line = fgets($this->handle)) {
+                    $postId = explode('::', $line); //[0] = title, [1] = id, [2] = link, [3] = type, [4] = author
+                    foreach ($postId as $element)
+                        $element = str_replace("\r\n", "", $element);
+                    if (strcmp($data, $postId[1]) == 0) {
+                        $this->content = $this->content.generateComments($postId); //postid array and post id string
+                    }
+                }
+
 		}
 			//$this->content = $this->content.'</body>';
 			return $this->content;
