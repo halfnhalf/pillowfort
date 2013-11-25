@@ -1,6 +1,6 @@
 <form action="comment/submit" method="post">
 
-        <?php echo '<input type="hidden" name="author" value="'.$_SESSION["userString"].'"><input type="hidden" name="id" value="'.$_GET['id'].'">';?>
+        <?php echo '<input type="hidden" name="id" value="'.$_GET['id'].'">';?>
         <label>Comment</label>
         <div class="form-group">
             <textarea <?php $H=new Html();if(!$H->isLoggedIn()) echo 'disabled="disabled"'?> class="form-control" name="textarea" rows="3" placeholder="Text"></textarea>

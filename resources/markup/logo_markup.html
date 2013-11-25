@@ -2,8 +2,8 @@
 	<!--<a href="../../"><img src="/images/pillow.png" width='100' height='70'\></a>-->
 	<h1 class="page-header"><a href="../../">PillowFort</a>
 		<div id="accountPanel">
-			<?php /*dynamic account_panel is generated here */ $H = new Html(); $H->outputContent($H->generate('account_panel'));?>
+			<?php /*dynamic account_panel is generated here */ $H = new Html(); $H->render($H->generate('account_panel'));?>
 		</div>
 	</h1>
-	<?php $H=new Html();$H->generateError("<strong>External Test Server</strong> Does not reflect the final product. Login to submit posts.");?>
+	<? $H=new Html();$H->render($H->generate('notices'));?>
 </div>

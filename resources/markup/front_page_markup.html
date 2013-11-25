@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="list-group col-sm-4">
- 	<?php /*new posts are generated here */ $H = new Html(); $H->outputContent($H->generate('posts'));?> 
+ 	<?php /*new posts are generated here */ $H = new Html(); $H->render($H->generate('posts'));?>
  	</div>
 
  	<div class="col-sm-4" id="submitPostForm">

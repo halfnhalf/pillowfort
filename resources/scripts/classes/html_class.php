@@ -2,9 +2,11 @@
 <?php
 /*Created by Zachary Clute
 functions as the backend for pillowfort*/
-include $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/php/post/posts_page.php';
-include $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/php/post/comments_page.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/php/post/posts_page.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/php/post/comments_page.php';
+
 $postFound = false;
+
 class Html {
 
 	function template($attributes) {
@@ -17,41 +19,41 @@ class Html {
 	function default_output($type) {
 		switch ($type) {
 			case 'head':
-				include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/head_markup.html';
-                include $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/php/analyticstracking.php';
+				include_once $_SERVER['DOCUMENT_ROOT'].'/resources/markup/head_markup.html';
+                include_once $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/php/analyticstracking.php';
 				break;
 		
 			case 'front_page':
-				include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/front_page_markup.html';
+				include_once $_SERVER['DOCUMENT_ROOT'].'/resources/markup/front_page_markup.html';
 				break;
 
 			case 'post':
-				include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/post_markup.html';
+				include_once $_SERVER['DOCUMENT_ROOT'].'/resources/markup/post_markup.html';
 				break;
 
 			case 'logo':
-				include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/logo_markup.html';
+				include_once $_SERVER['DOCUMENT_ROOT'].'/resources/markup/logo_markup.html';
 				break;
 			case 'register_page':
-				include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/register_markup.html';
+				include_once $_SERVER['DOCUMENT_ROOT'].'/resources/markup/register_markup.html';
 				break;
 
 			case 'login_page':
-				include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/login_markup.html';
+				include_once $_SERVER['DOCUMENT_ROOT'].'/resources/markup/login_markup.html';
 				break;
 
 			case 'admin_page':
-				include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/admin_markup.html';
+				include_once $_SERVER['DOCUMENT_ROOT'].'/resources/markup/admin_markup.html';
                 break;
 
             case 'footer':
-                include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/footer_markup.html';
+                include_once $_SERVER['DOCUMENT_ROOT'].'/resources/markup/footer_markup.html';
                 break;
 		}
 		//exit();
 	}
 
-	function outputContent($content) {
+	function render($content) {
 		echo $this->content;
 	}
 
@@ -67,8 +69,10 @@ class Html {
 	}
 
     function generateError($message) {
-        $this->content = '<div class="container"><div class="alert alert-danger" id="warningMessage">'.$message.'</div></div>';
-        $this->outputContent($this->content);
+        $alertMarkup = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/resources/markup/assets/alert_markup.html');
+        $this->content = $alertMarkup.$message.'</div>';
+
+        return $this->content;
     }
 
     function postExists() {
@@ -117,7 +121,7 @@ class Html {
 				}
 
 			fclose($this->handle);
-			break;
+		    	break;
 			case 'account_panel':
 				if (!isset($_SESSION))
 					session_start();
@@ -136,7 +140,7 @@ class Html {
 				}
 				else //no one is logged in
 					$this->content = $this->content.file_get_contents($registerLoginButtons);
-			break;
+		    	break;
 			case 'accounts_admin': //list the accounts with admin options to remove
 				$accounts = $_SERVER['DOCUMENT_ROOT'].'/database/accounts.txt';
 				$this->handle = fopen($accounts, 'r');
@@ -149,7 +153,16 @@ class Html {
 
 					$this->content = $this->content.'<a href="" class="list-group-item"><h4 class="list-group-item-heading">'.$credentials[0].'</h4><p class="list-group-item-text"><form id="submit" action="/admin/remove/" method="post"><input type="hidden" name="id" value="'.$credentials[0].'"><input type="hidden" name="type" value="accounts"><button type="submit" class="btn btn-default btn-xs">Remove</button></form></p></a>';
 				}
-			break;
+			    break;
+            case 'notices_admin':
+                $notices = $_SERVER['DOCUMENT_ROOT'].'/database/notices.txt';
+                $this->handle = fopen($notices,'r');
+
+                while($line = fgets($this->handle)) {
+                    $this->content = $this->content.$line.'<form id="submit" action="/admin/remove/" method="post"><input type="hidden" name="type" value="notices"><input type="hidden" name="notice" value="'.$line.'"><button type="submit" class="btn btn-default btn-xs">Remove</button></form>';
+                }
+                fclose($this->handle);
+                break;
 
             case 'comments':
                 $this->handle = fopen($posts, 'r');
@@ -161,11 +174,22 @@ class Html {
                         $this->content = $this->content.generateComments($postId); //postid array and post id string
                     }
                 }
+                fclose($this->handle);
+                break;
 
+            case 'notices':
+                $notices = $_SERVER['DOCUMENT_ROOT'].'/database/notices.txt';
+                $this->handle = fopen($notices,'r');
+
+                while($line = fgets($this->handle)) {
+                    $this->content = $this->content.$this->generateError($line);
+                }
+                fclose($this->handle);
+                break;
 		}
-			//$this->content = $this->content.'</body>';
-			return $this->content;
-		exit();	
+		return $this->content;
+
+	    exit();
 	}
 }
 ?>

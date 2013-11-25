@@ -2,11 +2,24 @@
     <h3 class="page-header center">Admin Control Panel</h3>
     <div class="col-sm-4">
         <h4>Posts</h4>
-        <?php /*new posts are generated here */ $H = new Html(); $H->outputContent($H->generate('posts_admin'));?>
+        <?php $H = new Html(); $H->render($H->generate('posts_admin'));?>
     </div>
-    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <h4>Notices</h4>
+        <? $H=new Html();$H->render($H->generate('notices_admin'));?>
+        <form action="notice/submit" method="post">
+            <div class="form-group">
+                <textarea class="form-control" name="textarea" rows="3" placeholder="Create a new notice"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="col-sm-4">
         <h4>Accounts</h4>
-        <?php $H->outputContent($H->generate('accounts_admin'));?>
+        <? $H->render($H->generate('accounts_admin'));?>
     </div>
 </div>
