@@ -1,2 +1,0 @@
-order allow,deny
-allow from 192.168.1.1/24

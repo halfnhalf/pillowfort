@@ -1,3 +1,0 @@
-Comic::d6d4df918::http://www.smbc-comics.com/comics/20131120.png::image_link::andrew
-DESU DESU DESU DESU DESU DESU DESU ::54c698fda::<?phpecho "I DIDN'T ADD A SEMICOLON. MWAHAHAHAAH" echo "something"while ($i == 10) {?>::text_area::andrew
-Line breaks broken::939618d05::ifIpostsomethingthatsalllinebreaksitdoesntwork.::text_area::andrew

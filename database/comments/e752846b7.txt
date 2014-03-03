@@ -1,3 +1,0 @@
-halfnhalf::Wow that's a big image.
-other user::It's not that big
-<a href="http://makeameme.org/media/created/200-gamecube-emulator.jpg"></a>::Testing some injection.

@@ -1,5 +1,0 @@
-andrew::Postan a comic bruh
-andrew::other comment
-andrew::Didn't like my html comment, eh?
-andrew::<?php echo "something"; ?>
-halfnhalf::I like dis comic.
