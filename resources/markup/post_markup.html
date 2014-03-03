@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="panel panel-primary" style="max-width: 50%;">
+        <?php $H=new Html();$H->render($H->generate('posts_page',$_GET['id']));?>
+    </div>
+    <?php $H=new Html();$H->render($H->generate('comments',$_GET['id']));?>
+    <div class="col-sm-4" id="submitCommentForm">
+        <?php $H = new Html(); if($H->postExists()) include_once $_SERVER['DOCUMENT_ROOT'].'/resources/markup/account_panel/submit_comment_form.html';?>
+    </div>
+</div>

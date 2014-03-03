@@ -1,0 +1,10 @@
+<title>PillowFort</title>
+
+<div class="container">
+	<div class="list-group col-sm-4">
+        <?php $H = new Html(); $H->render($H->generate('posts'));?>
+ 	</div>
+ 	<div class="col-sm-4" id="submitPostForm">
+		<?php $H = new Html(); if($H->isLoggedIn()) include $_SERVER['DOCUMENT_ROOT'].'/resources/markup/account_panel/submit_post_form.html'; //show the form when logged is?>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<form action="/submit/" method="post">
+     <div class="form-group">
+         <label for="postTitle">Title</label>
+         <input class="form-control" id="postTitle" type="text" name ="title" placeholder="Title">
+     </div>
+     <div class="form-group">
+         <label for"postText">Link or Text</label> 
+         <input class="form-control" id="postLink" type="text" name="link" placeholder="Link or Image URL">
+     </div>
+     <div class="form-group">
+         <textarea class="form-control" name="textarea" rows="3" placeholder="Text"></textarea>
+     </div>
+    <?php echo '<input type="hidden" name="author" value="'.$_SESSION["userString"].'">';?>
+     <div class="form-group">
+         <div class="col-sm-offset-2 col-sm-10">
+             <button type="submit" class="btn btn-default">Submit</button>
+         </div>
+     </div>
+</form>
