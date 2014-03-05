@@ -15,11 +15,10 @@ $id = $_POST['id'];
 $comment = $_POST['textarea'];
 $comment = str_replace("\r\n", "", $comment);
 $commentFile = $_SERVER['DOCUMENT_ROOT'].'/database/comments/'.$id.'.txt';
-$handle = fopen($commentFile, 'a') ;
 
 if  (strlen($comment) < 500) {
-    fwrite($handle, $author."::".$comment."\r\n");
-    fclose($handle);
+    $comment = $author."::".$comment."\r\n".file_get_contents($commentFile);
+    file_put_contents($commentFile, $comment;
 }
 header( "refresh:0;url=../" );
 exit();
