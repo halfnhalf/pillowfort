@@ -4,5 +4,6 @@ require_once $_SERVER['DOCUMENT_ROOT']."/resources/scripts/classes/html_class.ph
 $H = new Html();
 
 //output standard template
+test
 $H->template($attributes = array('head','logo','front_page','footer'));
 ?>
