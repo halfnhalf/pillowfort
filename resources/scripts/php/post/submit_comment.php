@@ -12,13 +12,12 @@ else {
     exit();
 }
 $id = $_POST['id'];
-$comment = $_POST['textarea'];
-$comment = str_replace("\r\n", "", $comment);
+$comment = str_replace("\r\n", "", $_POST['textarea']);
 $commentFile = $_SERVER['DOCUMENT_ROOT'].'/database/comments/'.$id.'.txt';
 
 if  (strlen($comment) < 500) {
     $comment = $author."::".$comment."\r\n".file_get_contents($commentFile);
-    file_put_contents($commentFile, $comment;
+    file_put_contents($commentFile, $comment);
 }
 header( "refresh:0;url=../" );
 exit();
