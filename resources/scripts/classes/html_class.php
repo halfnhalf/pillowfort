@@ -165,7 +165,7 @@ class Html {
 					foreach ($credentials as $element)
 						$element = str_replace("\r\n", "", $element);
 
-					$this->content = $this->content.'<a href="" class="list-group-item"><h4 class="list-group-item-heading">'.$credentials[0].'</h4><p class="list-group-item-text"><form id="submit" action="/admin/remove/" method="post"><input type="hidden" name="id" value="'.$credentials[0].'"><input type="hidden" name="type" value="accounts"><button type="submit" class="btn btn-default btn-xs">Remove</button></form></p></a>';
+					$this->content = $this->content.'<a href="" class="list-group-item"><h4 class="list-group-item-heading">'.$credentials[0].'</h4><p class="list-group-item-text"><form id="submit" action="/admin/remove/" method="post"><input type="hidden" name="username" value="'.$credentials[0].'"><input type="hidden" name="type" value="accounts"><button type="submit" class="btn btn-default btn-xs">Remove</button></form></p></a>';
 				}
 			    break;
             case 'notices_admin':
