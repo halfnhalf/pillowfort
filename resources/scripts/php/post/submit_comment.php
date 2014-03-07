@@ -17,7 +17,7 @@ else {
 }
 
 if  (strlen($comment) < 500) {
-    $comment = $author."::".$comment.$time."\r\n".file_get_contents($commentFile);
+    $comment = $author."::".$comment."::".$time."\r\n".file_get_contents($commentFile);
     file_put_contents($commentFile, $comment);
 }
 header( "refresh:0;url=../" );
