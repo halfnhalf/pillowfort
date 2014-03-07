@@ -5,7 +5,7 @@
     $H = new Html();
 
 	if($H->levelCheck($_SESSION["userLevel"]) > 1) {
-		if(isset($_POST['username']))
+		if(isset($_POST['user']))
 			$username = $_POST['user'];
 
 		else if(isset($_POST['id']))
