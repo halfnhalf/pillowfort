@@ -9,7 +9,7 @@ class Backend {
 	    $handle = fopen($comments, 'r');
 	    while($line = fgets($handle)) {
 	        $commentElements = explode('::', $line); //0 = author, 1 = comment 2 = date
-	        $content = $content.'<div class="well"><h4>'.$commentElements[0].' at '.$commentElements[2].'</h4><p>'.htmlspecialchars($commentElements[1]).'</p></div>';
+	        $content = $content.'<div class="well"><h4>'.$commentElements[0].' on '.$commentElements[2].'</h4><p>'.htmlspecialchars($commentElements[1]).'</p></div>';
 	    }
 	    return $content;
 	}
