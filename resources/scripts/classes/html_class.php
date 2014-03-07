@@ -6,9 +6,9 @@ functions as the template backend for pillowfort*/
 require_once $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/classes/backend_class.php';
 
 $postFound = false;
-$Backend = new Backend();
 
 class Html {
+	$Backend = new Backend();
 
 	function template($attributes) {
 			foreach ($attributes as $type)
