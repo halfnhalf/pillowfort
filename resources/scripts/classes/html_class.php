@@ -8,7 +8,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/classes/backend_class
 $postFound = false;
 
 class Html {
-	$Backend = new Backend();
 
 	function template($attributes) {
 			foreach ($attributes as $type)
@@ -86,6 +85,7 @@ class Html {
 		$adminLogoutButtons = $_SERVER['DOCUMENT_ROOT'].'/resources/markup/account_panel/admin_logout.html';
 		$accountLogoutButtons = $_SERVER['DOCUMENT_ROOT'].'/resources/markup/account_panel/account_logout.html';
 		$posts = $_SERVER['DOCUMENT_ROOT'].'/database/posts.txt';
+		$Backend = new Backend();
 
 		$this->content = NULL;				
 		switch ($type) {
