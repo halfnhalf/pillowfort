@@ -3,10 +3,10 @@
 /*Created by Zachary Clute
 functions as the template backend for pillowfort*/
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/php/post/posts_page.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/php/post/comments_page.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/php/classes/backend_class.php';
 
 $postFound = false;
+$Backend = new Backend();
 
 class Html {
 
@@ -123,7 +123,7 @@ class Html {
 
 						case 'posts_page':
                             if (strcmp($data, $postId[1]) == 0) {
-							    $this->content = generatePostContent($postId);
+							    $this->content = $Backend->generatePostContent($postId);
                                 global $postFound;
                                 $postFound = TRUE;
                                 break 2;
@@ -185,7 +185,7 @@ class Html {
                     foreach ($postId as $element)
                         $element = str_replace("\r\n", "", $element);
                     if (strcmp($data, $postId[1]) == 0) {
-                        $this->content = $this->content.generateComments($postId); //postid array and post id string
+                        $this->content = $this->content.$Backend->generateComments($postId); //postid array and post id string
                     }
                 }
                 fclose($this->handle);
