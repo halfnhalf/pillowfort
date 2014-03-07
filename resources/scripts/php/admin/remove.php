@@ -6,10 +6,13 @@
 
 	if($H->levelCheck($_SESSION["userLevel"]) > 1) {
 		if(isset($_POST['username']))
-			$username = $_POST['username'];
+			$username = $_POST['user'];
 
 		else if(isset($_POST['id']))
 			$id = $_POST['id'];
+
+		else if(isset($_POST['notice']))
+			$notice = $_POST['notice'];
 
 		$type = $_POST['type'];
 	}
@@ -25,7 +28,6 @@
 	$temp = $_SERVER['DOCUMENT_ROOT'].'/database/temp_posts.txt';
 	$temp_handle = fopen($temp, 'a');
 	$handle = NULL;
-    $notice = $_POST["notice"];
 
 	switch ($type) {
 		case 'posts':
@@ -43,18 +45,18 @@
 
 
 	while($line = fgets($handle)) {
-		$postId = explode('::', $line);//[0] = title, [1] = id, [2] = link, [3] = type, [4] = hidden
-        foreach ($postId as $element)
+		$elementId = explode('::', $line);//[0] = title, [1] = id, [2] = link, [3] = type, [4] = hidden; user::pass::email::level
+        /*foreach ($elementId as $element)
             $element = str_replace("\r\n", "", $element);
-        $postId[0] = str_replace("\r\n", "", $postId[0]);
+        $elementId[0] = str_replace("\r\n", "", $elementId[0]);*/
 
         switch($type) {
             case 'posts':
-                if (strcmp($id , $postId[1]) != 0)
+                if (strcmp($id , $elementId[1]) != 0)
     	            fwrite($temp_handle, $line);
                 break;
             case 'accounts':
-                if (strcmp($username , $postId[0]) != 0)
+                if (strcmp($username , $elementId[0]) != 0)
                     fwrite($temp_handle, $line);
                 break;
             case 'notices':
