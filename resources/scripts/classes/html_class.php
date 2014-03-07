@@ -3,7 +3,7 @@
 /*Created by Zachary Clute
 functions as the template backend for pillowfort*/
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/php/classes/backend_class.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/classes/backend_class.php';
 
 $postFound = false;
 $Backend = new Backend();
