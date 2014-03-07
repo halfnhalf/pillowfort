@@ -3,7 +3,7 @@ ini_set('display_errors', 'On');
 session_start();
 
 $content = NULL;
-$time = echo date('l jS \of F Y h:i:s A');
+$time = date('l jS \of F Y h:i:s A');
 $id = $_POST['id'];
 $comment = str_replace("\r\n", "", $_POST['textarea']);
 $commentFile = $_SERVER['DOCUMENT_ROOT'].'/database/comments/'.$id.'.txt';
