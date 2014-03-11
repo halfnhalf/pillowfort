@@ -47,7 +47,7 @@ class Backend {
 
 	function submitNotice($notice) {
 		$notice_file = $_SERVER['DOCUMENT_ROOT'].'/database/notices.txt';		
-		$notice = $notice.'\r\n'.file_get_contents($notice_file);
+		$notice = $notice."\r\n".file_get_contents($notice_file);
 		file_put_contents($notice_file, $notice);
 		header( "refresh:0;url=../" );
 		exit();

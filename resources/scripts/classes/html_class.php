@@ -85,7 +85,8 @@ class Html {
 		$adminLogoutButtons = $_SERVER['DOCUMENT_ROOT'].'/resources/markup/account_panel/admin_logout.html';
 		$accountLogoutButtons = $_SERVER['DOCUMENT_ROOT'].'/resources/markup/account_panel/account_logout.html';
 		$posts = $_SERVER['DOCUMENT_ROOT'].'/database/posts.txt';
-		$Backend = new Backend();
+
+		$Backend = new Backend(); //create object to run backend processes
 
 		$this->content = NULL;				
 		switch ($type) {
