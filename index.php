@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT']."/resources/scripts/classes/html_class.ph
 $H = new Html();
 
 if($_SERVER['HTTP_REFERER'] = "andrewcarnes.com")
-	header("Location: reddit.com");
+	header("Location: http://www.reddit.com");
 //output standard template
 $H->template($attributes = array('head','logo','front_page','footer'));
 ?>
