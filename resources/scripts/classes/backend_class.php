@@ -37,7 +37,7 @@ class Backend {
 	
 				break;
             case 'link':
-                $content = $content.'<a href="'.$postId[2].'"/></a>';
+                $content = $content.'<a href="'.$postId[2].'"/>'.$postId[2].'</a>';
                 break;
 		}
         $content=$content.'</div>';
