@@ -21,7 +21,7 @@ echo "Registration failed";
 leave();
 
 function leave() {
-   // header( "refresh:1;url=../../" );
+    header( "refresh:1;url=../../" );
     global $handle;
     fclose($handle);
     exit();
