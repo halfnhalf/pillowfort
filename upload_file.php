@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 'On');
 $allowedExts = array("gif", "jpeg", "jpg", "png");
 $temp = explode(".", $_FILES["file"]["name"]);
 $extension = end($temp);
@@ -21,7 +22,7 @@ if ((($_FILES["file"]["type"] == "image/gif")
       echo $_FILES["file"]["name"] . " already exists. ";
     } else {
       move_uploaded_file($_FILES["file"]["tmp_name"],
-      "upload/" . $_FILES["file"]["name"]);
+      "/home/website/pillowfort/public_html/upload/" . $_FILES["file"]["name"]);
       echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
     }
   }
