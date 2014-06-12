@@ -1,7 +1,7 @@
 
 <?php
 /*Created by Zachary Clute
-functions as the template backend for pillowfort*/
+functions as the dynamic template backend for pillowfort*/
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/resources/scripts/classes/backend_class.php';
 
@@ -156,6 +156,7 @@ class Html {
 				else //no one is logged in
 					$this->content = $this->content.file_get_contents($registerLoginButtons);
 		    	break;
+
 			case 'accounts_admin': //list the accounts with admin options to remove
 				$accounts = $_SERVER['DOCUMENT_ROOT'].'/database/accounts.txt';
 				$this->handle = fopen($accounts, 'r');
@@ -169,6 +170,7 @@ class Html {
 					$this->content = $this->content.'<a href="" class="list-group-item"><h4 class="list-group-item-heading">'.$credentials[0].'</h4><p class="list-group-item-text"><form id="submit" action="/admin/remove/" method="post"><input type="hidden" name="username" value="'.$credentials[0].'"><input type="hidden" name="type" value="accounts"><button type="submit" class="btn btn-default btn-xs">Remove</button></form></p></a>';
 				}
 			    break;
+
             case 'notices_admin':
                 $notices = $_SERVER['DOCUMENT_ROOT'].'/database/notices.txt';
                 $this->handle = fopen($notices,'r');
